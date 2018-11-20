@@ -9,7 +9,7 @@
  * During creation phase, all the global variables and functions are HOISTED, i.e., it setups the memory space for those
  * functions and variables.
  *
- ******************************************************************************/
+ **********************************************************************************************************************/
 
 // Global variable
 var foo = "Hello World"!;
