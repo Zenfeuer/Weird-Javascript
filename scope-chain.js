@@ -46,3 +46,4 @@ function funcD()
 
 var myVar = 1;
 funcA();
+

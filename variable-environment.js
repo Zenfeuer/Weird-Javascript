@@ -33,3 +33,4 @@ a();
 // This still prints the value '1', because the invocation of the functions does not affects the value of the global
 // variable myVar thanks to the variable environment.
 console.log(myVar);
+

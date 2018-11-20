@@ -40,3 +40,4 @@ function myFunc2 ()
 {
     console.log('Called myFunc2!');
 }
+
