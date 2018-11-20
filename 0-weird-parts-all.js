@@ -39,7 +39,6 @@ var foo3 = 'Hello World!';
 function myFunc2 () 
 {
     console.log('Called myFunc2!');
-    console.log(testingLetDeclaration);
 }
 
 // The let instruction is a new way to declare variables in ES6, but the variable declared with let cannot be used 
