@@ -39,7 +39,20 @@ var foo3 = 'Hello World!';
 function myFunc2 () 
 {
     console.log('Called myFunc2!');
+    console.log(testingLetDeclaration);
 }
+
+// The let instruction is a new way to declare variables in ES6, but the variable declared with let cannot be used 
+// before its declaration and it is affected by blocking scope.
+let testingLetDeclaration = "Hola!";
+
+function myFunc3 () 
+{
+    console.log('Called myFunc3!');
+    // This throws an error because testingLetDeclaration was declared with let and it is affected by blocking scope.
+    //console.log(testingLetDeclaration);
+}
+
 
 /***********************************************************************************************************************
  * VARIABLE ENVIRONMENT
