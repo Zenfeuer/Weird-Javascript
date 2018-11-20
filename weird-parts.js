@@ -12,7 +12,7 @@
  **********************************************************************************************************************/
 
 // Global variable
-var foo = "Hello World"!;
+var foo = "Hello World!";
 
 // Initially, all variables are set to 'undefined'.
 var foo2;
@@ -24,8 +24,10 @@ function myFunc ()
 }
 
 
-// This is possible thanks to hoisting, the memory space for myFunc2() and foo3 is already set up.
+// This is possible thanks to hoisting, the memory space for myFunc2() is already set up.
 myFunc2();
+
+// This prints 'undefined' because hoisting, the variable foo3 was set to 'undefined' during creation phase.
 console.log(foo3);
 
 var foo3 = 'Hello World!';
