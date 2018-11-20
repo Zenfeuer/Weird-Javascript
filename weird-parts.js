@@ -1,14 +1,13 @@
-/*******************************************************************************
+/***********************************************************************************************************************
  * GLOBAL EXECUTION CONTEXT AND HOISTING
  * 
- * Container/wrapper that contains the global object that in web is the window 
- * object and 'this' that points to the global object.
+ * Container/wrapper that contains the global object that in web is the window  object and 'this' that points to the 
+ * global object.
  *
- * Also contains the variables defined as global and the definitions of 
- * functions to be used when the code is running.
+ * Also contains the variables defined as global and the definitions of functions to be used when the code is running.
  *
- * During creation phase, all the global variables and functions are HOISTED,
- * i.e., it setups the memory space for those functions and variables.
+ * During creation phase, all the global variables and functions are HOISTED, i.e., it setups the memory space for those
+ * functions and variables.
  *
  ******************************************************************************/
 
@@ -25,8 +24,7 @@ function myFunc ()
 }
 
 
-// This is possible thanks to hoisting, the memory space for myFunc2() and foo3
-// is already set up.
+// This is possible thanks to hoisting, the memory space for myFunc2() and foo3 is already set up.
 myFunc2();
 console.log(foo3);
 
