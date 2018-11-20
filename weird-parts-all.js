@@ -23,8 +23,8 @@ var foo2;
 
 function myFunc ()
 {
-	// This prints 'undefined'.
-	console.log(foo2);
+    // This prints 'undefined'.
+    console.log(foo2);
 }
 
 // This is possible thanks to hoisting, the memory space for myFunc2() is already set up.
@@ -42,30 +42,28 @@ function myFunc2 ()
 }
 
 /***********************************************************************************************************************
- * VARIABLE ENVIRONMENT AND SCOPE CHAIN
+ * VARIABLE ENVIRONMENT
  * 
  * Variable environment refers to where the variables live and how the relate to each other in memory.
- *
- * 
  *
  **********************************************************************************************************************/
 
 function b () 
 {
-	// This variable lives in this function, so it nevers collide with the global definition and neither with the
-	// function a() that invoke this function, it is created in a diferent execution context for this function when it 
-	// is executed. So, it prints the value 'undefined'.
-	var myVar;
+    // This variable lives in this function, so it nevers collide with the global definition and neither with the
+    // function a() that invoke this function, it is created in a diferent execution context for this function when it 
+    // is executed. So, it prints the value 'undefined'.
+    var myVar;
     console.log(myVar);
 }
 
 function a () 
 {
-	// This variable lives in this function, so it nevers collide with the global definition, it is created in a
-	// diferent execution context for this function when it is executed. So, it prints the value '2'.
-	var myVar = 2;
+    // This variable lives in this function, so it nevers collide with the global definition, it is created in a
+    // diferent execution context for this function when it is executed. So, it prints the value '2'.
+    var myVar = 2;
     console.log(myVar);
-	b();
+    b();
 }
 
 var myVar = 1;
