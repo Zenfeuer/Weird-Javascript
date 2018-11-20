@@ -15,7 +15,7 @@
  *
  **********************************************************************************************************************/
 
-// Global variable
+// Global variable. The value "Hello World!" is not assigned during creation phase but when this line is executed.
 var foo = "Hello World!";
 
 // Initially, all variables are set to 'undefined' in the creation phase.
