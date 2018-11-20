@@ -89,6 +89,7 @@ a();
 // variable myVar thanks to the variable environment.
 console.log(myVar);
 
+
 /***********************************************************************************************************************
  * SCOPE CHAIN
  * 
@@ -138,6 +139,7 @@ function funcD()
 var myVar = 1;
 funcA();
 
+
 /***********************************************************************************************************************
  * ASYNCHRONOUS CALLBACKS
  * 
@@ -169,6 +171,7 @@ document.addEventListener('click', clickHandler);
 
 waitThreeSeconds();
 console.log('finished execution');
+
 
 /***********************************************************************************************************************
  * COERCION AND DEFAULT VALUES
