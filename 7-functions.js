@@ -9,6 +9,9 @@
  * them on the fly. This is because functions are objects. Even, you can declare anonymous functions in Javascript. This
  * is called First Class Functions.
  *
+ * IMPORTANT NOTE: Objects (including functions) interact by reference when sending them equal to each other ot passing
+ * to a function (see examples below). Instead, primitives always interact by value.
+ *
  **********************************************************************************************************************/
 
 // Function statement. This is hoisted during creation phase.
@@ -18,8 +21,8 @@ function salute()
 }
 
 // This is possible because functions are objects.
-greet.salute = 'venezuelan';
-console.log(greet.language);
+salute.language = 'venezuelan';
+console.log(salute.language);
 
 // Function expression. The function is not hoisted, it is assigned in runtime, so if you invoke the function before the
 // assignation, it throws an error. Function expressions also are called anonymous because the name property is empty.
@@ -40,3 +43,41 @@ function log(innerFunction)
 log(function () {
     console.log("Passing a function as parameter.");
 });
+
+// By value (primitives). a and b live in different spots of memory.
+var a = 3;
+var b;
+
+b = a;
+a = 2;
+
+console.log(a);
+console.log(b);
+
+// By reference (all objects (including functions))
+var c = { greeting: 'hi' };
+var d;
+
+d = c;
+c.greeting = 'hello'; // Mutate
+
+// d and c point to the same spot in memory
+console.log(c);
+console.log(d);
+
+// By reference (even as parameters)
+function changeGreeting(obj)
+{
+    obj.greeting = 'Hola'; // Mutate
+}
+
+changeGreeting(d);
+console.log(c);
+console.log(d);
+
+// Equals operator sets up new memory space (new address)
+c = { greeting: 'howdy' };
+console.log(c);
+console.log(d);
+
+
