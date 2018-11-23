@@ -9,6 +9,9 @@
  * them on the fly. This is because functions are objects. Even, you can declare anonymous functions in Javascript. This
  * is called First Class Functions.
  *
+ * During the creation of the execution context of a function, Javascript creates a variable called 'arguments'. This
+ * variable contains all the parameters passed to the function in an array.
+ *
  * IMPORTANT NOTE: Objects (including functions) interact by reference when sending them equal to each other ot passing
  * to a function (see examples below). Instead, primitives always interact by value.
  *
@@ -80,4 +83,54 @@ c = { greeting: 'howdy' };
 console.log(c);
 console.log(d);
 
+// An example where arguments variable is used
+function multiplyThreeNumbers (number1, number2, number3)
+{
+    number3 = number3 || 1;
+
+    if (arguments.length < 2)
+    {
+        console.log("Missing parameters, you must specify at least 2 numbers.");
+        return;
+    }
+
+    console.log(arguments);
+
+    console.log("The result is -> " + number1 * number2 * number3);
+}
+
+multiplyThreeNumbers();
+multiplyThreeNumbers(2);
+multiplyThreeNumbers(2, 4);
+multiplyThreeNumbers(2, 4, 6);
+
+// IMPORTANT NOTE
+// From ES6 you can used the functionality 'spread', where you don't have to specify all parameters in the function
+// definition but a new variable defined with '...' at the beginning that will contain all the others parameters in an
+// array
+function multiplyManyNumbers(number1, number2, ...otherNumbers)
+{
+    if (arguments.length < 2)
+    {
+        console.log("Missing parameters, you must specify at least 2 numbers.");
+        return;
+    }
+
+    console.log(arguments);
+    console.log(otherNumbers);
+
+    var result = number1 * number2;
+
+    // otherNumbers is an array
+    otherNumbers.forEach(function(item){
+        result *= item;
+    });
+
+    console.log("The result is -> " + result);
+}
+
+multiplyManyNumbers();
+multiplyManyNumbers(1, 2);
+multiplyManyNumbers(1, 2, 3);
+multiplyManyNumbers(1, 2, 3, 4, 5, 6, 7);
 
