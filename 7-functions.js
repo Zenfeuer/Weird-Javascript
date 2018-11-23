@@ -15,6 +15,8 @@
  * IMPORTANT NOTE: Objects (including functions) interact by reference when sending them equal to each other ot passing
  * to a function (see examples below). Instead, primitives always interact by value.
  *
+ * IMPORTANT NOTE: Javascript does not support function overloading, because functions are objects.
+ *
  **********************************************************************************************************************/
 
 // Function statement. This is hoisted during creation phase.

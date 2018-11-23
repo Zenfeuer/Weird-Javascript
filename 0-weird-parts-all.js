@@ -340,8 +340,10 @@ Darwing.address2 = {
  * During the creation of the execution context of a function, Javascript creates a variable called 'arguments'. This
  * variable contains all the parameters passed to the function in an array.
  *
- * IMPORTANT NOTE: Objects (including functions) interact by reference when sending them equal to each other ot passing
- * to a function (see examples below). Instead, primitives always interact by value.
+ * ** IMPORTANT NOTE: Objects (including functions) interact by reference when sending them equal to each other or 
+ * passing to a function (see examples below). Instead, primitives always interact by value.
+ *
+ * ** IMPORTANT NOTE: Javascript does not support function overloading, because functions are objects.
  *
  **********************************************************************************************************************/
 
