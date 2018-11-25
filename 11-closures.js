@@ -164,3 +164,51 @@ fs2[1](); // Prints 1
 fs2[2](); // Prints 2
 
 
+// *** FUNCTION FACTORIES USING CLOSURES ***
+// Returning functions according to some conditions.
+function makeGreeting (language)
+{
+    var supportedLanguages = ['en', 'es', 'de', 'it'];
+
+    if (arguments.length === 0)
+    {
+        return function ()
+        {
+            console.log("ERROR: You must specified a supported language.");
+        }
+    }
+    else if (supportedLanguages.includes(language) === false)
+    {
+        return function ()
+        {
+            console.log("ERROR: Unsupported language.");
+        }
+    }
+
+    // In this case, language value is preserved to this function scope and making different things depending on the 
+    // value that it has.
+    return function (firstname, lastname)
+    {
+        if (language === 'en') 
+        {
+            console.log('Hello ' + firstname + ' ' + lastname);   
+        }
+
+        if (language === 'es')
+        {
+            console.log('Hola ' + firstname + ' ' + lastname);   
+        }
+    }
+}
+
+var greetEnglish = makeGreeting('en');
+var greetSpanish = makeGreeting('es');
+var greetRussian = makeGreeting('ru');
+var greetEmpty = makeGreeting();
+
+greetEnglish('Darwing', 'Jenkins');
+greetSpanish('Darwing', 'Jenkins');
+greetRussian('Darwing', 'Jenkins');
+greetEmpty('Darwing', 'Jenkins');
+
+
