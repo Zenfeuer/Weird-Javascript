@@ -717,8 +717,22 @@ for (var i = 0; i < 10; i++)
     setTimeout(preserveValue(i), 100);
 }
 
+// NOTE: with closures and IIFE you can achieved interesting patterns. In the next example, you can access to methods
+// and properties declared in an IIFE.
+(function (globalObject) {
 
+    var privateVar = 'Shhhhhh! This is a private secret.';
+    var publicVar  = 'Leeeeeeeeeroy Jenkins!';
 
+    // Now the global object has this method to access publicVar value.
+    globalObject.getPublicVar = function () 
+    {
+        return publicVar;
+    };
 
+// this = window object (browser)
+})(this);
+
+console.log(this.getPublicVar());
 
 
