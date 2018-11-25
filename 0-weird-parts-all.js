@@ -735,4 +735,62 @@ for (var i = 0; i < 10; i++)
 
 console.log(this.getPublicVar());
 
+// NOTE: More examples of preserving values
+// A function that builds another functions
+function buildFunctions ()
+{ 
+    var functionsArr = [];
+    
+    for (var i = 0; i < 3; i++)
+    {
+        // You can push functions into an array because arrays in JS are a collection of anything.
+        functionsArr.push(
+            function () 
+            {
+                // In this case, the value of 'i' it is not preserved. By scope chain, when this function runs, 'i'
+                // points to 
+                console.log(i);   
+            }
+        );
+    }
+    
+    return functionsArr;
+}
+
+var fs = buildFunctions();
+
+// All these invokations are going to print out the value '3'.
+fs[0]();
+fs[1]();
+fs[2]();
+
+function buildFunctionsPreserving ()
+{ 
+    var functionsArr = [];
+    
+    for (var i = 0; i < 3; i++)
+    {
+        functionsArr.push(
+
+            // This IIFE is creating a function scope the 'preserve' the value of 'i'.
+            (function (j) {
+                return function ()
+                {
+                    console.log(j);   
+                }
+
+            // Passing the current value of 'i'.
+            })(i)
+        );
+    }
+    
+    return functionsArr;
+}
+
+var fs2 = buildFunctionsPreserving();
+
+fs2[0](); // Prints 0
+fs2[1](); // Prints 1
+fs2[2](); // Prints 2
+
 
