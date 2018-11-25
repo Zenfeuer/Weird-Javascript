@@ -743,13 +743,19 @@ function buildFunctions ()
     
     for (var i = 0; i < 3; i++)
     {
+        // An improment to this scenario is using the let declaration and passiing the variable to the function.
+        //let j = i;
+
         // You can push functions into an array because arrays in JS are a collection of anything.
         functionsArr.push(
             function () 
             {
                 // In this case, the value of 'i' it is not preserved. By scope chain, when this function runs, 'i'
                 // points to 
-                console.log(i);   
+                console.log(i);
+
+                // Using let declaration improvement.
+                //console.log(j);
             }
         );
     }
