@@ -1063,6 +1063,10 @@ console.log(arr5);
  *
  **********************************************************************************************************************/
 
+///// ********
+// @TODO: Put examples of the proto of object, function an array and to see the scope chain
+///// ********
+
 // NOTE: This example is for demo purposes, NEVER assign the __proto__ directly, this can bring performance issues.
 
 // A default person object
