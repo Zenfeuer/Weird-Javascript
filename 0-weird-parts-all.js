@@ -1201,6 +1201,8 @@ Person.prototype.getFullName = function ()
 // 'new' operator creates an empty object, then calls the function constructor Person with 'this' pointing to the new 
 // object, and whatever modification don to that object using the 'this' variable will end up as part of that object 
 // and that's what returned.
+// NOTE: if you forget the 'new' operator, Person function is executed anyways, but the object is not created, its value
+// will be undefined.
 var luke = new Person('Luke', 'Skywalker');
 console.log(luke);
 
