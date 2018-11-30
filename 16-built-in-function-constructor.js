@@ -4,6 +4,8 @@
  * There are some function constructors inside the Javascript architecture ready to be used. These built-in function
  * constructors allow to have have access to special methods depending on the prototype property.
  *
+ * NOTE: Using built-in function constructors can be dangerous in some occasions specially with primitive types.
+ *
  **********************************************************************************************************************/
 
 // Built-in function constructors in Javascript. It looks that you are defining/creating primitives or kind of with these 
@@ -48,5 +50,53 @@ Number.prototype.isPositive = function ()
 
 // Because isPositive() method is added to the prototype property, any number has access now to that method.
 console.log(num.isPositive());
+
+/// Dangerous Aside
+
+var a = 3;              // A number primitive
+var b = new Number(3);  // A Number object
+
+// In this case, == operator converts the operands to the same type (coercion), so in the end the expression is true.
+console.log(a == b); // true
+
+// Because strict equality does not make type conversion, this return false. This is where built-in function 
+// constructors can be dangerous, this can be hard to debug.
+console.log(a === b); // false
+
+/// Dangerous Aside for Arrays
+
+// NOTE: Arrays in Javascript are also objects! Because of that, you can modify the prototype property and add new
+// properties and method and this can be dangerous if you loop the array with 'for..in' statement. See the example.
+
+var arr = ['Luke', 'Leia', 'Anakin'];
+
+// Prints out:
+// 0: 'Luke'
+// 1: 'Leia'
+// 2: 'Anakin'
+//
+// As you see, arrays are effectively objects.
+for (var prop in arr)
+{
+    console.log(prop + ': ' + arr[prop]);
+}
+
+// But if new properties and methods are added via prototype property, this will affect all the arrays.
+Array.prototype.customProperty = 'Kame Hame Ha!';
+Array.prototype.customMethod = function () { return "Hallo"; };
+
+// Prints out:
+// 0: 'Luke'
+// 1: 'Leia'
+// 2: 'Anakin'
+// customProperty: Kame Hame Ha!
+// customMethod: function () { return "Hallo"; }
+//
+// So, for..in statement is not he best way to loop over arrays in Javascript. It is recommended to use the classical
+// for loop statement to iterates over the elements of an array.
+for (var prop in arr)
+{
+    console.log(prop + ': ' + arr[prop]);
+}
 
 
