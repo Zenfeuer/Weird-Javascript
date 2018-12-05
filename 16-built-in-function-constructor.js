@@ -92,7 +92,7 @@ Array.prototype.customMethod = function () { return "Hallo"; };
 // customProperty: Kame Hame Ha!
 // customMethod: function () { return "Hallo"; }
 //
-// So, for..in statement is not he best way to loop over arrays in Javascript. It is recommended to use the classical
+// So, for..in statement is not the best way to loop over arrays in Javascript. It is recommended to use the classical
 // for loop statement to iterates over the elements of an array.
 for (var prop in arr)
 {
