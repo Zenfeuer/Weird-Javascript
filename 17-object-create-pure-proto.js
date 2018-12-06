@@ -7,7 +7,10 @@
  * The Object.create() method creates a new object, using an existing object as the prototype of the newly created
  * object. So, it returns a new object with the specified prototype object and properties (if specified).
  *
- * Reference: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create
+ * Additional References:
+ * - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create
+ * - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof
+ * - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof
  *
  **********************************************************************************************************************/
 
@@ -40,12 +43,12 @@ console.log(bilbo);
 // bilbo object has access to greet() method.
 console.log(bilbo.greet());
 
-/// Sometimes, you need to ensure backward compatibility in your code, for example, Object.create() it is supported for
-/// ES5 or superior. To achieve this compatibility you can use POLIFY, that is adding code that adds a feature which the
-/// the engine may lack. Example:
-
-// Verifying if the method create() exists in built-in Object.
-if (!Object.create) 
+/**
+ * NOTE: Sometimes, you need to ensure backward compatibility in your code, for example, Object.create() it is supported
+ * for ES5 or superior. To achieve this compatibility you can use POLIFY, that is adding code that adds a feature which 
+ * the engine may lack. Example:
+ */
+if (!Object.create)     // Verifying if the method create() exists in built-in Object.
 {
     // If not, create it
     Object.create = function (o) 
@@ -66,4 +69,56 @@ if (!Object.create)
         return new F();
     };
 }
+
+/**
+ * typeof: it is an unary operator that returns a string indicating the type of the unevaluated operand.
+ */
+var a = 3;
+console.log(typeof a);      // number
+
+var b = "Hello";
+console.log(typeof b);      // string
+
+var c = {};
+console.log(typeof c);      // object
+
+var d = [];
+console.log(typeof d);      // object
+
+/**
+ * Because arrays are also objects, typeof of array will return 'object'. To avoid this, it is better to use 
+ * Array.isArray or Object.prototype.toString.call to differentiate regular objects from arrays
+ */
+console.log(Array.isArray(d))                       // true
+console.log(Object.prototype.toString.call(d));     // [object Array]
+
+var z = function() { };
+console.log(typeof z);      // function
+
+// Function ctor
+function Person(name) 
+{
+    this.name = name;
+}
+
+var e = new Person('Jane');
+
+console.log(typeof e);      // object
+
+/**
+ * The instanceof operator tests whether the prototype property of a constructor appears anywhere in the prototype chain
+ * of an object.
+ */
+console.log(e instanceof Person);   // true
+
+console.log(typeof undefined);      // undefined
+
+/**
+ * It is pretty weird that 'typeof null' returns 'object' instead of 'null'. This is a bug in Javascript that exists
+ * since the beginning. In the first implementation of JavaScript, JavaScript values were represented as a type tag and 
+ * a value, with the type tag for objects being 0, and null was represented as the NULL pointer (0x00 on most 
+ * platforms). As a result, null had 0 as a type tag, hence the bogus typeof return value.
+ */
+console.log(typeof null);           // object
+
 
