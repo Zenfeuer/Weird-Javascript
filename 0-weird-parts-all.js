@@ -72,29 +72,34 @@ function myFunc3 ()
 
 
 /***********************************************************************************************************************
- * VARIABLE ENVIRONMENT
+ * VARIABLE ENVIRONMENT (Lexical Scope)
  * 
- * Variable environment refers to where the variables live and how the relate to each other in memory. So, when a
- * varable is going to be used, it matters where it was defined, so if a global variable and a variable defined in a
- * function have the same name, they never collide because the live in different spaces in memory.
+ * Refers to where the variables live and how they relate to each other in memory. So, when a variable is going to be 
+ * used, it matters where it was defined, so if a global variable and a variable defined within a function have the same
+ * name, they never collide because the live in different memory spaces.
  *
  **********************************************************************************************************************/
 
 function b () 
 {
-    // This variable lives in this function, so it nevers collide with the global definition and neither with the
-    // function a() that invoke this function, it is created in a diferent execution context for this function when it 
-    // is executed. So, it prints the value 'undefined'.
+    /**
+     * myVar lives in this function, so it never collides with the global definition and neither with the function a() 
+     * that invokes this function, it is created in a different execution context for this function when it is executed. 
+     * So, it prints the value 'undefined' because no value was assigned.
+     */
     var myVar;
     console.log(myVar);
 }
 
 function a () 
 {
-    // This variable lives in this function, so it nevers collide with the global definition, it is created in a
-    // diferent execution context for this function when it is executed. So, it prints the value '2'.
+    /**
+     * myVar lives in this function, so it never collides with the global definition, it is created in a different
+     * execution context for this function when it is executed. So, it prints the value '2'.
+     */
     var myVar = 2;
     console.log(myVar);
+
     b();
 }
 
@@ -103,26 +108,29 @@ console.log(myVar);
 
 a();
 
-// This still prints the value '1', because the invocation of the functions does not affects the value of the global
-// variable myVar thanks to the variable environment.
+/**
+ * This still prints the value '1', because the invocation of the functions does not affect the value of the global
+ * variable myVar thanks to the variable environment.
+ */
 console.log(myVar);
 
 
 
 /***********************************************************************************************************************
- * SCOPE CHAIN
+ * SCOPE
  * 
- * Scope refers to where a variable is available in your code. This also affects function definitions.
+ * Refers to where a variable is available in your code. This also affects function definitions.
  * 
- * The scope chain is a list of all the variables and objects inside which the current function exists. This also 
- * includes the variable object of global execution context. Scope chain also contains the current function variable 
- * object. 
+ * SCOPE CHAIN @@@TODO: Improve definition
+ * 
+ * It is a list of all the variables and objects inside which the current function exists. This also includes the 
+ * variable object of global execution context. It also contains the current function variable object.
  *
  **********************************************************************************************************************/
 
  function funcA ()
  {
-    // Define functions inside in functions is possible, because functions are objects in Javascript.
+    // NOTE: Defining functions within functions is possible, because functions are objects in Javascript.
     function funcB ()
     {
         // This prints the value '1' because scope chain. When this line is executed, myVar is not in the execution
