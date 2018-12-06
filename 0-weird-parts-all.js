@@ -1396,4 +1396,47 @@ if (!Object.create)
     };
 }
 
+/// typeof: it is an unary operator that returns a string indicating the type of the unevaluated operand.
+
+var a = 3;
+console.log(typeof a);      // number
+
+var b = "Hello";
+console.log(typeof b);      // string
+
+var c = {};
+console.log(typeof c);      // object
+
+var d = [];
+console.log(typeof d);      // object
+
+// Because arrays are also objects, typeof of array will return 'object'. To avoid this, it is better to use 
+// Array.isArray or Object.prototype.toString.call to differentiate regular objects from arrays
+
+console.log(Array.isArray(d))                       // true
+console.log(Object.prototype.toString.call(d));     // [object Array]
+
+var z = function() { };
+console.log(typeof z);      // function
+
+// Function ctor
+function Person(name) 
+{
+    this.name = name;
+}
+
+var e = new Person('Jane');
+
+console.log(typeof e);      // object
+
+// The instanceof operator tests whether the prototype property of a constructor appears anywhere in the prototype chain
+// of an object.
+console.log(e instanceof Person);   // true
+
+console.log(typeof undefined);      // undefined
+
+
+console.log(typeof null);
+
+
 
