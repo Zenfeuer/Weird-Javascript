@@ -384,14 +384,14 @@ Darwing.address2 = {
  * variable contains all the parameters passed to the function in an array.
  *
  * ** IMPORTANT NOTE: Objects (including functions) interact by reference when sending them equal to each other or 
- * passing to a function (see examples below). Instead, primitives always interact by value.
+ * passing them to a function (see examples below). Instead, primitives always interact by value.
  *
  * ** IMPORTANT NOTE: Javascript does not support function overloading, because functions are objects.
  *
  **********************************************************************************************************************/
 
 // Function statement. This is hoisted during creation phase.
-function salute()
+function salute ()
 {
     console.log('hi');   
 }
@@ -400,8 +400,12 @@ function salute()
 salute.language = 'venezuelan';
 console.log(salute.language);
 
-// Function expression. The function is not hoisted, it is assigned in runtime, so if you invoke the function before the
-// assignation, it throws an error. Function expressions also are called anonymous because the name property is empty.
+/**
+ * Function expression
+ *
+ * The function is not hoisted, it is assigned in runtime, so if you invoke the function before the assignation, it 
+ * throws an error. Function expressions also are called anonymous because the name property is empty.
+ */
 var anonymousSalute = function () {
     console.log('hi');   
 }
@@ -410,7 +414,7 @@ var anonymousSalute = function () {
 anonymousSalute();
 
 // Because functions are objects, you can pass them as parameters.
-function log(innerFunction)
+function log (innerFunction)
 {
     innerFunction();
 }
@@ -442,7 +446,7 @@ console.log(c);
 console.log(d);
 
 // By reference (even as parameters)
-function changeGreeting(obj)
+function changeGreeting (obj)
 {
     obj.greeting = 'Hola'; // Mutate
 }
@@ -451,7 +455,7 @@ changeGreeting(d);
 console.log(c);
 console.log(d);
 
-// Equals operator sets up new memory space (new address)
+// Equals operator sets up new memory space (new address in memory)
 c = { greeting: 'howdy' };
 console.log(c);
 console.log(d);
@@ -477,10 +481,13 @@ multiplyThreeNumbers(2);
 multiplyThreeNumbers(2, 4);
 multiplyThreeNumbers(2, 4, 6);
 
-// IMPORTANT NOTE
-// From ES6 you can used the functionality 'spread', where you don't have to specify all parameters in the function
-// definition but a new variable defined with '...' at the beginning that will contain all the others parameters in an
-// array
+/**
+ * IMPORTANT NOTE
+ *
+ * From ES6 you can used the functionality 'spread', where you don't have to specify all parameters in the function
+ * definition but a new variable defined with '...' at the beginning that will contain all the others parameters as
+ * array
+ */
 function multiplyManyNumbers(number1, number2, ...otherNumbers)
 {
     if (arguments.length < 2)
