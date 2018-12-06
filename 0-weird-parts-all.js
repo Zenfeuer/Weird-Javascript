@@ -8,15 +8,18 @@
 //////***********
 
 /***********************************************************************************************************************
- * GLOBAL EXECUTION CONTEXT, HOISTING AND EXECUTION
+ * GLOBAL EXECUTION CONTEXT
  * 
- * Container/wrapper that contains the global object that in web is the window  object and 'this' that points to the 
- * global object. If there is an outer environment, a reference to that is also created.
+ * Container/wrapper that contains the global object that in web browser is the window object and 'this' that points to 
+ * the global object. If there is an outer environment, a reference to that is also created. Also contains the variables
+ * defined as global and the definitions of functions to be used when the code is running.
  *
- * Also contains the variables defined as global and the definitions of functions to be used when the code is running.
+ * HOISTING
  *
- * During creation phase, all the global variables and functions are HOISTED, i.e., it setups the memory space for those
+ * During creation phase, all global variables and functions are HOISTED, i.e., it setups the memory space for those 
  * functions and variables.
+ *
+ * EXECUTION 
  *
  * When a function is invoked, a new execution context is stacked in the execution stack, this new execution context is
  * similar to the global execution context, so the outer environment is the context where that function lives, mainly is
@@ -32,9 +35,11 @@ var foo2;
 
 function myFunc ()
 {
-    // This prints 'undefined'.
     console.log(foo2);
 }
+
+// Prints out: 'undefined'.
+myFunc();
 
 // This is possible thanks to hoisting, the memory space for myFunc2() is already set up.
 myFunc2();
@@ -50,15 +55,18 @@ function myFunc2 ()
     console.log('Called myFunc2!');
 }
 
-// The let instruction is a new way to declare variables in ES6, but the variable declared with let cannot be used 
-// before its declaration and it is affected by blocking scope.
+/**
+ * NOTE: The let instruction is a new way to declare variables in ES6, but the variable declared with let cannot be used 
+ * before its declaration and it is affected by blocking scope.
+ *
+ * If you try to use testingLetDeclaration variable inside a function, it will throw an error because 
+ * testingLetDeclaration was declared with 'let' instruction and it is affected by blocking scope.
+ */
 let testingLetDeclaration = "Hola!";
 
 function myFunc3 () 
 {
     console.log('Called myFunc3!');
-    // This throws an error because testingLetDeclaration was declared with let and it is affected by blocking scope.
-    //console.log(testingLetDeclaration);
 }
 
 
