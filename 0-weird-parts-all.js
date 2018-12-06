@@ -1,6 +1,10 @@
 //////***********
-// @TODO: Find all documentation and pu the links/references in the README and here where are used.
+// @TODO: Find all documentation and put the links/references in the README and here where are used.
 // bind(), apply(), call(), first class functions, scope chain, prototypal inheritance
+//
+// @TODO: Improve comment blocks to be more readable
+//
+// @TODO: Review grammar
 //////***********
 
 /***********************************************************************************************************************
@@ -1435,7 +1439,7 @@ var e = new Person('Jane');
 console.log(typeof e);      // object
 
 /**
- *The instanceof operator tests whether the prototype property of a constructor appears anywhere in the prototype chain
+ * The instanceof operator tests whether the prototype property of a constructor appears anywhere in the prototype chain
  * of an object.
  */
 console.log(e instanceof Person);   // true
