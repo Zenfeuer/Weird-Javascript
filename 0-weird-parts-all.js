@@ -189,6 +189,7 @@ function waitThreeSeconds()
 {
     var ms = 3000 + new Date().getTime();
 
+    //@@@TODO: uncomment this
     //while (new Date() < ms) {}
 
     console.log('finished function');
@@ -208,12 +209,14 @@ console.log('finished execution');
 
 
 /***********************************************************************************************************************
- * COERCION AND DEFAULT VALUES
+ * COERCION
  * 
  * Coercion refers to convert a value from one type to another and is a common behavior in Javascript because dynamic
- * typing of the language. It can be dangerous in some scenarios. To avoid the coercion in the comparisons between two 
+ * typing of the language. It can be dangerous in some scenarios. To avoid coercion in the comparisons between two  
  * values, it is recommended use the strictly equality or inequality operator (===). Coercion can be used as an 
  * advantage to verify lack of existence in if statements.
+ *
+ * DEFAULT VALUES
  *
  * Javascript does not care if you don’t pass the parameters for a function, unlike another programming languages. This
  * is because Javascript set the parameters with the default value 'undefined'. But sometimes this behavior is not
@@ -243,12 +246,15 @@ Number("haha");         // The value "haha" is coerced to NaN
 String(undefined);      // The value undefined is coerced to "undefined"
 
 // Initially, name is set with 'undefined' value.
-function greet(name)
+function greet (name)
 {
-    // This is another example of coercion. The operator || returns true or false if the parameters passed are booleans,
-    // but if not so, it returns the value that can be coerced to true. In this case, if name is undefined, || is going
-    // to return '<Your name here>'.
+    /**
+     * This is another example of coercion. The operator || returns true or false if the parameters passed are booleans,
+     * but if not so, it returns the value that can be coerced to true. In this case, if name is undefined, || is going
+     * to return '<Your name here>' because it can be coerced to true.
+     */
     name = name || '<Your name here>';
+
     console.log('Hello ' + name);    
 }
 
@@ -288,8 +294,10 @@ console.log(person[firstNameProperty]);
 console.log(person.firstname);
 console.log(person.lastname);
 
-// Unlike other programming languages, this does not throw an error, this returns undefined. This means that you can
-// always add properties and functions on the fly for an object.
+/**
+ * NOTE: Unlike other programming languages, this does not throw an error, it returns undefined. This means that you 
+ * can always add properties and functions on the fly for an object.
+ */
 console.log(person.address);
 
 // Objects can be inside of another objects.
@@ -303,7 +311,7 @@ person.printFullName = function (greeting)
 {
     greeting = greeting || "Hello";
 
-    // In this case, this is not pointing to the global object but to the person object. This can be confused.
+    // NOTE: In this case, 'this' is not pointing to the global object but to the person object. This can be confused.
     console.log(greeting + " " + this.firstname + " " + this.lastname);
 }
 
@@ -311,18 +319,23 @@ console.log(person.address.street);
 console.log(person.address.city);
 console.log(person["address"]["state"]);
 
-// Invoking the function contained in person object
+// Invoking the function contained in person object.
 person.printFullName("Hola");
 
-// Also you can invoke a function with the [] operator, but you need to specify the parenthesis to really invoke the
-// function (and to pass the parameters). person["printFullName"] it just returs the code of the function.
+/**
+ * NOTE: Also you can invoke a function with the [] operator, but you need to specify the parenthesis to really invoke
+ * the function (and to pass the parameters). person["printFullName"] it just returs the code property of the function.
+ */
 person["printFullName"];
 console.log(person["printFullName"]);
 
 // Correct way to invoke functions in objects using [] operator.
 person["printFullName"]();
 
-// Note that this throws an error, because at this point Darwing variable is undefined. 
+/**
+ * NOTE: This throws an error, because at this point Darwing variable is undefined, so if you try to access a property
+ * from an undefined variable, it will always throw an error.
+ */
 //greetPerson(Darwing);
 
 // Object literal declaration. Actually, this way is the most used, because is more redable and easier to write.
@@ -343,7 +356,7 @@ function greetPerson(person)
 
 greetPerson(Darwing);
 
-// Objects can be created on the fly
+// NOTE: Objects can be created on the fly
 greetPerson({ 
     firstname: 'Dancer', 
     lastname: 'of Boreal Valley'
