@@ -527,18 +527,27 @@ multiplyManyNumbers(1, 2, 3, 4, 5, 6, 7);
  *
  **********************************************************************************************************************/
 
-// Global function statement. In this case, the outer environment of this function in the global execution context, so, 
-// the 'this' points to window object.
+/**
+ * Global function statement
+ *
+ * The outer environment of this function is the global execution context, so, the 'this' points to window object.
+ */
 function globalA ()
 {
     console.log(this);
 
-    // Assigning a new variable to the global object through the 'this' pointer. This is not a good practice, it is hard
-    // to debug and can cause a lot of problems.
+    /**
+     * NOTE: Assigning a new variable to the global object through the 'this' pointer. This is not a good practice, it 
+     * is hard to debug and can cause a lot of problems.
+     */
     this.newVariable = 'hello from newVariable';
 }
 
-// Global function expression, where also 'this' is pointing to window object.
+/**
+ * Global function expression
+ *
+ * 'this' is pointing to window object.
+ */
 var globalB = function()
 {
     console.log(this);   
@@ -547,7 +556,7 @@ var globalB = function()
 globalA();
 
 // It is not necessary to use dot or [] operator to access newVariable, because it is attached to the global object.
-console.log(newVariable); // not good!
+console.log(newVariable);   // not good!
 
 globalB();
 
@@ -555,16 +564,20 @@ var globalC = {
     name: 'The globalC object',
     log: function() {
 
-        // In this case, 'this' is not pointing to the global object, it is pointing to the object globalC. It is a 
-        // better practice to assign 'this' to another variable to avoid confussion.
+        /**
+         * NOTE: 'this' is not pointing to the global object, it is pointing to the object globalC. It is a better 
+         * practice to assign 'this' to another variable to avoid confussion.
+         */
         var self = this;
         
         // This is modifying the name property of globalC, not adding a new var to the global object.
         self.name = 'Updated globalC object';
         console.log(self);
         
-        // This function expression has still 'this' pointing to the object globalC. it occurs the same with a new
-        // function stament defined here.
+        /**
+         * NOTE: This function expression has still 'this' pointing to the object globalC. It occurs the same with a new
+         * function stament defined within globalC object.
+         */ 
         var setname = function(newname) {
             self.name = newname;   
         }
@@ -572,11 +585,13 @@ var globalC = {
         // This is modifying the name property of globalC, not adding a new var to the global object.
         setname('Updated again! The globalC object');
 
-        // Prints the object globalC.
+        // Prints out the object globalC.
         console.log(self);
 
-        // Defining a new object inside another object it changes again where the 'this' is pointing for the methods
-        // declared in the new object
+        /**
+         * NOTE: Defining a new object inside another object, it changes again where the 'this' is pointing for the 
+         * methods declared in the new object.
+         */
         var newObj = {
             name: 'Im a new object living in globalC',
             log: function () 
@@ -584,12 +599,12 @@ var globalC = {
                 // Because log function lives within newObj object, now 'this' points to newObj when this log is invoked
                 var self = this;
 
-                // This updates newObj.name property
+                // This updates newObj.name property, not globalC.name.
                 self.name = 'newObj: Javascript can be crazy sometimes!';
 
                 console.log('Logging from newObj');
 
-                // This prints newObj object
+                // Prints out newObj object
                 console.log(self);
             }
         };
