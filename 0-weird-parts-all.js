@@ -1143,20 +1143,27 @@ var checkPastLimit = function (limiter, item)
 var arr4 = mapForEach(arr1, checkPastLimit.bind(null, 1));
 console.log(arr4);
 
-// To avoid to pass the 'this' value because it is not really used, you can create a function that returns another
-// function with the limiter and the 'this' value preset
+/**
+ * To avoid to pass the 'this' value because it is not really used, you can create a function that returns another
+ * function with the limiter and the 'this' value preset.
+ */
 var checkPastLimitSimplified = function (limiter)
 {
-    // limiter param is preset by bind().
-    // NOTE: it is not recommended DO NOT MUTATE in these tiny functions, if you need to, it is recommend to return the 
-    // new data and not affect the original one. Also, it is recommended to mutate data as high up in that chain as
-    // possible of functions.
+    /**
+     * limiter param is preset by bind().
+     *
+     * IMPORTANT NOTE:
+     *
+     * It is recommended DO NOT MUTATE data in these tiny functions, if you need to, it is recommend to return the new 
+     * data and not affect the original one. Also, it is recommended to mutate data as high up in that chain as possible
+     * of functions.
+     */
     return function(limiter, item) {
         return item > limiter;   
     }.bind(this, limiter); 
 };
 
-// Now, it is needed to pass only the limiter
+// Now, it is needed to pass only the limiter.
 var arr5 = mapForEach(arr1, checkPastLimitSimplified(1));
 console.log(arr5);
 
@@ -1175,7 +1182,7 @@ console.log(arr5);
  *
  **********************************************************************************************************************/
 
-// NOTE: This example is for demo purposes, NEVER assign the __proto__ directly, this can bring performance issues.
+/// NOTE: This example is for demo purposes, NEVER assign the __proto__ directly, this can bring performance issues.
 
 // A default person object
 var person = {
