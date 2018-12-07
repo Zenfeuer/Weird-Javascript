@@ -941,11 +941,11 @@ greetEmpty('Darwing', 'Jenkins');
  *
  * call(): calls a function with a given 'this' value and arguments provided individually.
  *
- * apply(): calls a function with a given this value, and arguments provided as an array (or an array-like object).
+ * apply(): calls a function with a given 'this' value, and arguments provided as an array (or an array-like object).
  *
  **********************************************************************************************************************/
 
-// Create an object with an method.
+// Create an object with a method.
 var lukeSkywalker = {
     firstname: 'Luke',
     lastname: 'Skywalker',
@@ -956,8 +956,10 @@ var lukeSkywalker = {
     }
 };
 
-// If this function is called without specifying the keyword 'this' through bind(), call() or apply(), it throws an
-// error because getFullName() method does not exist in the global object.
+/**
+ * NOTE: If this function is called without specifying the keyword 'this' through bind(), call() or apply(), it throws 
+ * an error because getFullName() method does not exist in the global object.
+ */
 var logName = function (...params)
 {
     console.log('------ parameters ------');
@@ -970,7 +972,7 @@ var logName = function (...params)
     console.log('Logged: ' + this.getFullName());
 }
 
-// With bind(), it creates a new function with the 'this' set to the provided, in this case, lukeSkywalker
+// With bind(), it creates a new function with 'this' keyword set to the provided one, in this case, lukeSkywalker
 var logLukeName = logName.bind(lukeSkywalker);
 
 // Invoking the new function
