@@ -667,15 +667,18 @@ arr[3](arr[2].name, arr[4]);
  *
  **********************************************************************************************************************/
 
-// Using an Immediately Invoked Function Expression (IIFE)
-// Note that darthVader now contains what returns the function and not the function itself, so using darthVader() throws
-// an error because in this case is a string.
+/**
+ * Using an Immediately Invoked Function Expression (IIFE)
+ * 
+ * Note that darthVader now contains what returns the function and not the function itself, so using darthVader() throws
+ * an error because in this case is a string.
+ */
 var darthVader = function (quote)
 {
 
     return 'Darth Vader said: ' + quote;
 
-// Note that function is invoked on the fly passing the parameters needed
+// Note that function is invoked on the fly passing the parameters needed.
 }('The circle is now complete. When I left you, I was but the learner. Now I am the master.');
 
 console.log(darthVader);
@@ -703,10 +706,10 @@ var harveyDentQuote = 'You either die a hero or you live long enough to see your
  * CLOSURES
  *
  * Closures are important in Javascript because they allow important design patterns. But initially it is hard to
- * understand. The root of the problem is that functions have a state (scope of the function) and it stores references
- * to all variables that were declared at the time the function was created. Due to hoisting, named functions have the
- * scope present at the top of whatever block they belong to, but anonymous functions have whatever scope exists at the 
- * line they are initialized (see examples to understand better).
+ * understand them. The root of the problem is that functions have a state (scope of the function) and it stores
+ * references to all variables that were declared at the time the function was created. Due to hoisting, named functions
+ * have the scope present at the top of whatever block they belong to, but anonymous functions have whatever scope 
+ * exists at the line they are initialized (see examples to understand better).
  *
  * So, a closure is the act of capturing a value or an object and separating it from its original scope, making it
  * available to the capturing function forever.
@@ -722,14 +725,17 @@ var harveyDentQuote = 'You either die a hero or you live long enough to see your
 var helloSubject = 'World';
 
 // This function lives in the global scope
-function sayHello(name) 
+function sayHello (name) 
 {
-    // Function scope (including salutation variable)
+    /// Function scope (including name variable)
 
-    // This variable is going to be used to verify it is visible from the returned anonymous function
+    // This variable is going to be used to verify it is visible from the returned anonymous function.
     var verifyScope = "This is a scope test!";
 
-    // This assignation modified the global variable thanks to the scope chain, but it nevers collides with name variable.
+    /** 
+     * NOTE: This assignation modified the global variable thanks to the scope chain, but it nevers collides with 'name' 
+     * variable. This is because those variables are passed by value, and not by reference (see this topic later).
+     */
     helloSubject = 'Vegetta';
 
     return function(salutation)
@@ -737,7 +743,7 @@ function sayHello(name)
         // This prints the original value of verifyScope because the state of the function.
         console.log(verifyScope);
 
-        // This is going to print the value 'Trunks' because was modified before execution of this function.
+        // This is going to print out the value 'Trunks' because was modified before execution of this function.
         console.log(helloSubject);
 
         // Because function state, name has the value 'World', so the value was preserved in the function scope.
@@ -751,12 +757,14 @@ var sayAloha = sayHello(helloSubject);
 // Force update of the global variable to verify closure
 helloSubject = 'Trunks';
 
-// Invoking the function to verify closure
+// Invoking the function to verify closure. Prints out: Aloha World
 sayAloha('Aloha');
 
-// In this example, the closure does not happen because the value of 'i' was not preserved, setTimeout function executes
-// the passed function as a callback, so when the console.log() runs, it references the current value of 'i', which has
-// long ago incremented to 10
+/**
+ * In this example, the closure does not happen because the value of 'i' was not preserved, setTimeout function executes
+ * the passed function as a callback, so when the console.log() runs, it references the current value of 'i', which has
+ * long ago incremented to 10.
+ */
 for (var i = 0; i < 10; i++)
 {
     setTimeout(function()
@@ -766,8 +774,10 @@ for (var i = 0; i < 10; i++)
     100);
 }
 
-// To achieve a closure in the previous example, it is needed to create a function that preserves the value thanks to
-// the function scope.
+/**
+ * To achieve a closure in the previous example, it is needed to create a function that preserves the value thanks to
+ * the function scope.
+ */
 var preserveValue = function (value)
 {
     return function ()
@@ -782,8 +792,10 @@ for (var i = 0; i < 10; i++)
     setTimeout(preserveValue(i), 100);
 }
 
-// NOTE: with closures and IIFE you can achieved interesting patterns. In the next example, you can access to methods
-// and properties declared in an IIFE.
+/**
+ * NOTE: with closures and IIFE you can achieved interesting patterns. In the next example, you can access to methods
+ * and properties declared in an IIFE.
+ */
 (function (globalObject) {
 
     var privateVar = 'Shhhhhh! This is a private secret.';
@@ -800,7 +812,9 @@ for (var i = 0; i < 10; i++)
 
 console.log(this.getPublicVar());
 
-// NOTE: More examples of preserving values
+
+/// NOTE: More examples of preserving values
+
 // A function that builds another functions
 function buildFunctions ()
 { 
@@ -808,15 +822,15 @@ function buildFunctions ()
     
     for (var i = 0; i < 3; i++)
     {
-        // An improment to this scenario is using the let declaration and passiing the variable to the function.
+        // An improvement to this scenario is using the let declaration and passiing the variable to the function.
         //let j = i;
 
         // You can push functions into an array because arrays in JS are a collection of anything.
         functionsArr.push(
             function () 
             {
-                // In this case, the value of 'i' it is not preserved. By scope chain, when this function runs, 'i'
-                // points to 
+                //@@@TODO: review
+                // The value of 'i' it is not preserved. By scope chain, when this function runs, 'i' points to 
                 console.log(i);
 
                 // Using let declaration improvement.
