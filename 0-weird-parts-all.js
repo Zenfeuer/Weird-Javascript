@@ -982,11 +982,14 @@ logLukeName('Leia', 'R2-D2');
 logName.call(lukeSkywalker, 'Leia', 'R2-D2');
 logName.apply(lukeSkywalker, ['Leia', 'R2-D2']);
 
-///// ********
-// @TODO: This also an example of Prototypal Inheritance, so documentation must be completed in this section
-///// ********
-// With these special methods, it is possible to achieve interesting patterns as follows, where Food function (object)
-// 'inherits' the variables defined in Product function, including the method nameAndPrice.
+
+/**
+ * With these special methods, it is possible to achieve interesting patterns as follows, where Food function (object)
+ * 'inherits' the variables defined in Product function, including the method nameAndPrice.
+ *
+ * NOTE: These is a example of Prototypal Inheritance, covered later. Product function in this case is a function
+ * constructor that it is used to construct objects.
+ */
 function Product (name, price) 
 {
     this.name = name;
@@ -1000,33 +1003,44 @@ function Product (name, price)
     console.log("Running from Product().");
 }
 
-///// ********
-// @TODO: This is really an object constructor. Documentation must be updated here
-///// ********
+/// Function Constructor
 function Food (name, price)
 {
-    // Object Food defines name and price variables through Product function. To make it works, Food function must be
-    // invoked using the new instruction.
+    /**
+     * NOTE: object Food defines name and price variables through Product function. To make it works, Food function must
+     * be invoked using the new instruction.
+     */
     Product.call(this, name, price);
+
     this.category = 'food';
 
     console.log("Running from Food().");
 }
 
-// If you invoke the function Food as follows, it is not throw an error but the 'this' keyword is pointing to the global
-// object, so when the function Food finishes, name, price and category variables will be defined in the global object.
-//Food('cheese', 5);
+/**
+ * IMPORTANT NOTE AND DANGEROUS ASIDE
+ *
+ * If you invoke the function Food as follows, it does not throw an error but the 'this' keyword is pointing to the 
+ * global object, so when the function Food finishes, name, price and category variables will be defined in the global 
+ * object.
+ */
+Food('milk', 99);
 
-// This does not return a function but an object with all the veriables as properties and methods. In this case, it has
-// name, price and category as properties and nameAndPrice as method. This is because of new instruction, it creates an
-// object using Food function as constructor
+/**
+ * IMPORTANT NOTE
+ *
+ * This does not return a function but an object with properties and methods defined in the function. In this case, it 
+ * has name, price and category as properties and nameAndPrice as method. This is because of 'new' instruction, it 
+ * creates an object using Food function as constructor.
+ */
 var fObj = new Food('cheese', 5);
 
 console.log(fObj);
 
 fObj.nameAndPrice();
 
-// Also the special methods can be used in IIFEs
+
+/// NOTE: Also the special methods can be used in IIFEs.
 (function (lang1, lang2) {
 
     console.log('Logged: ' + this.getFullName());
@@ -1035,7 +1049,8 @@ fObj.nameAndPrice();
     
 }).apply(lukeSkywalker, ['es', 'en']);
 
-// Function borrowing is possible thanks to these methods
+
+/// NOTE: Function borrowing is also possible thanks to these methods.
 var leiaOrgana = {
     firstname: 'Leia',
     lastname: 'Organa'
@@ -1044,14 +1059,20 @@ var leiaOrgana = {
 // Object leiaOrgana 'borrows' the function getFullName() from object lukeSkywalker
 console.log(lukeSkywalker.getFullName.apply(leiaOrgana));
 
-// By using bind(), you can achieve function currying. Currying means creating a copy of a function but with some preset
-// parameters. Very useful in mathematical situations.
+
+/**
+ * NOTE
+ *
+ * By using bind(), you can achieve function currying.
+ *
+ * Currying means creating a copy of a function but with some preset parameters. Very useful in mathematical situations.
+ */
 function multiply (a, b) 
 {
-    return a*b;   
+    return a * b;   
 }
 
-// For these cases, it is not matter the 'this' keyword
+// For these cases, it is not matter the 'this' keyword.
 var multipleByTwo = multiply.bind(null, 2);
 console.log(multipleByTwo(4));
 
@@ -1064,6 +1085,14 @@ console.log(multipleByThree(4));
  * FUNCTIONAL PROGRAMMING
  *
  * Thanks to first class functions, functional programming is possible in Javascript.
+ *
+ * Functional programming is a programming paradigm, it is the process of building software by composing pure functions,
+ * avoiding shared state, mutable data, and side-effects. Functional programming is declarative rather than imperative, 
+ * and application state flows through pure functions. Contrast with object oriented programming, where application 
+ * state is usually shared and colocated with methods in objects.
+ *
+ * ADDITIONAL REFERENCES:
+ * - https://medium.com/javascript-scene/master-the-javascript-interview-what-is-functional-programming-7f218c68b3a0
  *
  **********************************************************************************************************************/
 
@@ -1086,7 +1115,7 @@ function mapForEach (arr, fn)
 var arr1 = [1, 2, 3];
 console.log(arr1);
 
-// You can make different work over the array, in this case, multiply each item by 2
+// You can make different work over the array, in this case, multiply each item by 2.
 var arr2 = mapForEach(arr1, function (item)
 {
    return item * 2; 
@@ -1094,23 +1123,23 @@ var arr2 = mapForEach(arr1, function (item)
 
 console.log(arr2);
 
-// Also you can defined a function expression and pass the function variable to mapForEach
+// Also you can defined a function expression and pass the function variable to mapForEach.
 var fn = function (item)
 {
     return item > 2;
 }
 
-// In this case, a boolean array is returned
+// In this case, a boolean array is returned.
 var arr3 = mapForEach(arr1, fn);
 console.log(arr3);
 
-// Now, checking with a limiter
+// Now, checking with a limiter.
 var checkPastLimit = function (limiter, item)
 {
     return item > limiter;
 }
 
-// To pass the limiter it is needed to use bind, to preset the limiter
+// To pass the limiter it is needed to use bind, to preset the limiter.
 var arr4 = mapForEach(arr1, checkPastLimit.bind(null, 1));
 console.log(arr4);
 
