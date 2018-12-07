@@ -822,18 +822,20 @@ function buildFunctions ()
     
     for (var i = 0; i < 3; i++)
     {
-        // An improvement to this scenario is using the let declaration and passiing the variable to the function.
+        // IMPROVEMENT: using the let declaration and passiing the variable to the function.
         //let j = i;
 
         // You can push functions into an array because arrays in JS are a collection of anything.
         functionsArr.push(
             function () 
             {
-                //@@@TODO: review
-                // The value of 'i' it is not preserved. By scope chain, when this function runs, 'i' points to 
+                /**
+                 * The value of 'i' it is not preserved. By scope chain, when this function runs, 'i' points to the last
+                 * value that it gets for the loop, in this case, 3
+                 */
                 console.log(i);
 
-                // Using let declaration improvement.
+                // IMPROVEMENT: Using let declaration.
                 //console.log(j);
             }
         );
@@ -844,7 +846,7 @@ function buildFunctions ()
 
 var fs = buildFunctions();
 
-// All these invokations are going to print out the value '3'.
+// All these invokations are going to print out the value '3', beacuse value was not preserved.
 fs[0]();
 fs[1]();
 fs[2]();
@@ -857,7 +859,7 @@ function buildFunctionsPreserving ()
     {
         functionsArr.push(
 
-            // This IIFE is creating a function scope the 'preserve' the value of 'i'.
+            // This IIFE is creating a function scope that 'preserves' the value of 'i'.
             (function (j) {
                 return function ()
                 {
@@ -874,11 +876,13 @@ function buildFunctionsPreserving ()
 
 var fs2 = buildFunctionsPreserving();
 
-fs2[0](); // Prints 0
-fs2[1](); // Prints 1
-fs2[2](); // Prints 2
+fs2[0](); // Prints out 0
+fs2[1](); // Prints out 1
+fs2[2](); // Prints out 2
 
-// *** FUNCTION FACTORIES USING CLOSURES ***
+
+/// *** FUNCTION FACTORIES USING CLOSURES ***
+
 // Returning functions according to some conditions.
 function makeGreeting (language)
 {
@@ -899,8 +903,7 @@ function makeGreeting (language)
         }
     }
 
-    // In this case, language value is preserved to this function scope and making different things depending on the 
-    // value that it has.
+    // NOTE: 'language' value is preserved to this function scope and making different things depending on the value.
     return function (firstname, lastname)
     {
         if (language === 'en') 
