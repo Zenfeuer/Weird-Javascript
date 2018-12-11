@@ -212,15 +212,15 @@ console.log('finished execution');
  * COERCION
  * 
  * Coercion refers to convert a value from one type to another and is a common behavior in Javascript because dynamic
- * typing of the language. It can be dangerous in some scenarios. To avoid coercion in the comparisons between two  
- * values, it is recommended use the strictly equality or inequality operator (===). Coercion can be used as an 
+ * typing of the language. It can be dangerous in some scenarios. To avoid coercion in the comparisons between two
+ * values, it is recommended use the strictly equality or inequality operator (===). Coercion can be used as an
  * advantage to verify lack of existence in if statements.
  *
  * DEFAULT VALUES
  *
  * Javascript does not care if you don’t pass the parameters for a function, unlike another programming languages. This
  * is because Javascript set the parameters with the default value 'undefined'. But sometimes this behavior is not
- * desired or it is needed to set an specific default value. To set default values, the best practice is the usage of 
+ * desired or it is needed to set an specific default value. To set default values, the best practice is the usage of
  * the operator || (see example below).
  *
  **********************************************************************************************************************/
@@ -407,7 +407,7 @@ console.log(salute.language);
  * throws an error. Function expressions also are called anonymous because the name property is empty.
  */
 var anonymousSalute = function () {
-    console.log('hi');   
+    console.log('hi');
 }
 
 // To invoke the function, you must used the variable that receives the object function.
@@ -579,7 +579,7 @@ var globalC = {
          * function stament defined within globalC object.
          */ 
         var setname = function(newname) {
-            self.name = newname;   
+            self.name = newname;
         }
 
         // This is modifying the name property of globalC, not adding a new var to the global object.
@@ -1213,7 +1213,7 @@ console.log(john.getFullName());
 console.log(john.firstname);
 
 var jane = {
-    firstname: 'Jane'   
+    firstname: 'Jane'
 }
 
 /**
@@ -1237,7 +1237,7 @@ console.log(jane.getFullName());
  * properties and methods, because of prototype chain.
  */
 person.getFormalFullName = function() {
-    return this.lastname + ', ' + this.firstname;   
+    return this.lastname + ', ' + this.firstname;
 }
 
 // Both can use getFormalFullName() method.
@@ -1406,7 +1406,7 @@ console.log(num.toFixed(2));
 // that can be useful, specifically when you are creating a new library.
 String.prototype.isLengthGreaterThan = function (limit)
 {
-    return this.length > limit;  
+    return this.length > limit;
 }
 
 // Because prototype chain, isLengthGreaterThan() method is accessible by any string now.
@@ -1414,7 +1414,7 @@ console.log("Pikachu".isLengthGreaterThan(3));
 
 Number.prototype.isPositive = function ()
 {
-    return this > 0;   
+    return this > 0;
 }
 
 // Because isPositive() method is added to the prototype property, any number has access now to that method.
@@ -1496,7 +1496,7 @@ var person = {
     // using the object properties, by scope chain that property reference is going to be searched and if there is an
     // outside variable with the same name, it is going to be used and can get undesired behavior.
     greet: function () {
-        return 'Hi ' + this.firstname;   
+        return 'Hi ' + this.firstname;
     }
 }
 
