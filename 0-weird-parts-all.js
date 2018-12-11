@@ -1275,10 +1275,14 @@ console.log(c.__proto__);
 
 console.log('----- Reflection example -----');
 
-// Objects in Javascript can look up to their own properties and methods, this is called reflection. The following 
-// example, the loop iterates over all properties and methods defined in john object, including the ones defined in the
-// prototype. If you want to list/change the properties and methods of the object itself, you must used the method
-// hasOwnProperty(propName) to apply the filter.
+/**
+ * IMPORTANT NOTE
+ *
+ * Objects in Javascript can look at to their own properties and methods, this is called reflection. In the following 
+ * example, the loop iterates over all properties and methods defined in john object, including the ones defined in the
+ * prototype. If you want to list/change the properties and methods of the object itself, you must used the method
+ * hasOwnProperty(propName) to apply the filter.
+ */
 for (var prop in john)
 {
     if (john.hasOwnProperty(prop))
