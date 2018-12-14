@@ -1394,9 +1394,13 @@ console.log(leia.getFormalFullName());
  *
  **********************************************************************************************************************/
 
-// Built-in function constructors in Javascript. It looks that you are defining/creating primitives or kind of with these 
-// built-in function constructors, but you are not. You are actually creating objects that conrain primitives and give
-// them extra abilities.
+/**
+ * Built-in function constructors in Javascript. 
+ * 
+ * *** IMPORTANT NOTE: It looks that you are defining/creating primitives or kind of with these built-in function 
+ * constructors, but you are not. You are actually creating new objects that contain primitives and give them extra 
+ * abilities. Avoid defining primitives (number, string, boolean) with these constructors, at least you really need it.
+ */
 var x1 = new Object();    // A new Object object
 var x2 = new String();    // A new String object
 var x3 = new Number();    // A new Number object
@@ -1407,16 +1411,18 @@ var x7 = new Function();  // A new Function object
 var x8 = new Date();      // A new Date object
 
 
-// This works because Javascript engine boxed it inside of a string object which has this 'length' property and another
-// properties and methods such as indexOf().
+/**
+ * NOTE: This works because Javascript engine boxed it inside of a string object which has this 'length' property and 
+ * another properties and methods such as indexOf().
+ */
 console.log("Hello World!".length);
 
-// This fails because Javascript does not intend to box all the direct primitives value.
+// NOTE: This fails because Javascript does not intend to box all the direct primitives value.
 //console.log(5.toFixed(2));
 
 var num = 5;
 
-// In this case, Javascript engine boxes/converts the primitive variable num automatically to a Number object.
+// NOTE: In this case, Javascript engine boxes/converts the primitive variable num automatically to a Number object.
 console.log(num.toFixed(2));
 
 // You can access to the prototype property of these built-in function constructors and add new properties and methods
@@ -1437,7 +1443,7 @@ Number.prototype.isPositive = function ()
 // Because isPositive() method is added to the prototype property, any number has access now to that method.
 console.log(num.isPositive());
 
-/// Dangerous Aside
+/// *** DANGEROUS ASIDE ***
 
 var a = 3;              // A number primitive
 var b = new Number(3);  // A Number object
@@ -1445,23 +1451,29 @@ var b = new Number(3);  // A Number object
 // In this case, == operator converts the operands to the same type (coercion), so in the end the expression is true.
 console.log(a == b); // true
 
-// Because strict equality does not make type conversion, this return false. This is where built-in function 
-// constructors can be dangerous, this can be hard to debug.
+/** 
+ * Because strict equality does not make type conversion, this return false. This is where built-in function 
+ * constructors CAN BE DANGEROUS, this can be hard to debug.
+ */
 console.log(a === b); // false
 
-/// Dangerous Aside for Arrays
+/// *** DANGEROUS ASIDE FOR ARRAYS ***
 
-// NOTE: Arrays in Javascript are also objects! Because of that, you can modify the prototype property and add new
-// properties and method and this can be dangerous if you loop the array with 'for..in' statement. See the example.
+/**
+ * NOTE: Arrays in Javascript are also objects! Because of that, you can modify the prototype property and add new
+ * properties and methods and this can be dangerous if you loop the array with 'for..in' statement. See the example.
+ */
 
 var arr = ['Luke', 'Leia', 'Anakin'];
 
-// Prints out:
-// 0: 'Luke'
-// 1: 'Leia'
-// 2: 'Anakin'
-//
-// As you see, arrays are effectively objects.
+/**
+ * Prints out:
+ * 0: 'Luke'
+ * 1: 'Leia'
+ * 2: 'Anakin'
+ *
+ * As you see, arrays are effectively objects.
+ */
 for (var prop in arr)
 {
     console.log(prop + ': ' + arr[prop]);
@@ -1471,15 +1483,17 @@ for (var prop in arr)
 Array.prototype.customProperty = 'Kame Hame Ha!';
 Array.prototype.customMethod = function () { return "Hallo"; };
 
-// Prints out:
-// 0: 'Luke'
-// 1: 'Leia'
-// 2: 'Anakin'
-// customProperty: Kame Hame Ha!
-// customMethod: function () { return "Hallo"; }
-//
-// So, for..in statement is not the best way to loop over arrays in Javascript. It is recommended to use the classical
-// for loop statement to iterates over the elements of an array.
+/**
+ * Prints out:
+ * 0: 'Luke'
+ * 1: 'Leia'
+ * 2: 'Anakin'
+ * customProperty: Kame Hame Ha!
+ * customMethod: function () { return "Hallo"; }
+ *
+ * NOTE: So, for..in statement is not the best way to loop over arrays in Javascript. It is recommended to use the 
+ * classical for loop statement to iterates over the elements of an array.
+ */
 for (var prop in arr)
 {
     console.log(prop + ': ' + arr[prop]);
