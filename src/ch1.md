@@ -2,7 +2,7 @@
 
 ## Global Execution Context
 
-Container/wrapper that contains the global object that in web is the window  object and 'this' that points to the global object. If there is an outer environment, a reference to that is also created.
+Container/wrapper that contains the global object that in web is the `window` object and the keyword `this` that points to the global object. If there is an outer environment, a reference to that is also created.
 
 Also contains the variables defined as global and the definitions of functions to be used when the code is running.
 
