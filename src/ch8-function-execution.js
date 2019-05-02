@@ -2,7 +2,7 @@
  *
  * FUNCTION EXECUTION
  *
- * Note: For further reference, read ch7.md
+ * Note: For further reference, read ch8.md
  *
  ******************************************************************************/
 

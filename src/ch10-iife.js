@@ -1,16 +1,20 @@
-/***********************************************************************************************************************
+/*******************************************************************************
+ *
  * IMMEDIATELY INVOKED FUNCTION EXPRESSION (IIFE)
  *
- * An IIFE is a function expression that is invoked immediately where is defined/created.
+ * Note: For further reference, read ch10.md
  *
- **********************************************************************************************************************/
+ ******************************************************************************/
 
-// Using an Immediately Invoked Function Expression (IIFE)
-// Note that darthVader now contains what returns the function and not the function itself, so using darthVader() throws
-// an error because in this case is a string.
+/**
+ * Using an Immediately Invoked Function Expression (IIFE)
+ * 
+ * Note that darthVader now contains what returns the function and not the 
+ * function itself, so using darthVader() throws an error because in this case 
+ * is a string.
+ */
 var darthVader = function (quote)
 {
-
     return 'Darth Vader said: ' + quote;
 
 // Note that function is invoked on the fly passing the parameters needed
