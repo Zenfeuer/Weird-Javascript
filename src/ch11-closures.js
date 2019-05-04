@@ -1,4 +1,4 @@
-/***********************************************************************************************************************
+/*******************************************************************************
  * CLOSURES
  *
  * Closures are important in Javascript because they allow important design patterns. But initially it is hard to
@@ -15,7 +15,7 @@
  * scope chain is achieved through redeclaring the variable or passing it into a function, and this is a common behavior
  * in the closures.
  *
- **********************************************************************************************************************/
+ ******************************************************************************/
 
 // This variable lives in the global scope
 var helloSubject = 'World';
@@ -25,21 +25,36 @@ function sayHello(name)
 {
     // Function scope (including salutation variable)
 
-    // This variable is going to be used to verify it is visible from the returned anonymous function
+    /**
+     * This variable is going to be used to verify it is visible from the 
+     * returned anonymous function
+     */
     var verifyScope = "This is a scope test!";
 
-    // This assignation modified the global variable thanks to the scope chain, but it nevers collides with name variable.
+    /**
+     * This assignation modified the global variable thanks to the scope chain, 
+     * but it nevers collides with name variable.
+     */
     helloSubject = 'Vegetta';
 
     return function(salutation)
     {
-        // This prints the original value of verifyScope because the state of the function.
+        /** 
+         * This prints the original value of verifyScope because the state of 
+         * the function.
+         */
         console.log(verifyScope);
 
-        // This is going to print the value 'Trunks' because was modified before execution of this function.
+        /**
+         * This is going to print the value 'Trunks' because was modified before 
+         * execution of this function.
+         */
         console.log(helloSubject);
 
-        // Because function state, name has the value 'World', so the value was preserved in the function scope.
+        /** 
+         * Because function state, name has the value 'World', so the value was 
+         * preserved in the function scope.
+         */
         console.log(salutation + ' ' + name + '!');
     }
 }
