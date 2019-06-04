@@ -1,19 +1,7 @@
 /*******************************************************************************
  * CLOSURES
  *
- * Closures are important in Javascript because they allow important design patterns. But initially it is hard to
- * understand. The root of the problem is that functions have a state (scope of the function) and it stores references
- * to all variables that were declared at the time the function was created. Due to hoisting, named functions have the
- * scope present at the top of whatever block they belong to, but anonymous functions have whatever scope exists at the 
- * line they are initialized (see examples to understand better).
- *
- * So, a closure is the act of capturing a value or an object and separating it from its original scope, making it
- * available to the capturing function forever.
- *
- * Closures are related to the Scope Chain, because when a variable is used, the engine finds out through the scope
- * chain until it finds the entry for that variable. The way of separating a variable from its previous existence in the
- * scope chain is achieved through redeclaring the variable or passing it into a function, and this is a common behavior
- * in the closures.
+ * Note: For further reference, read ch11.md
  *
  ******************************************************************************/
 
@@ -68,9 +56,11 @@ helloSubject = 'Trunks';
 // Invoking the function to verify closure
 sayAloha('Aloha');
 
-// In this example, the closure does not happen because the value of 'i' was not preserved, setTimeout function executes
-// the passed function as a callback, so when the console.log() runs, it references the current value of 'i', which has
-// long ago incremented to 10
+/**
+ * In this example, the closure does not happen because the value of 'i' was not preserved, setTimeout function executes
+ * the passed function as a callback, so when the console.log() runs, it references the current value of 'i', which has
+ * long ago incremented to 10
+ */
 for (var i = 0; i < 10; i++)
 {
     setTimeout(function()
